@@ -305,12 +305,10 @@ int main(int argc, char *argv[])
     //load_bios_rom("rom_md.sms");
 
     //cart_load_game_rom("sonic.sms");
-    if (argc < 2)
+    if (argc > 1)
     {
-        printf("Pass ROM filename. BIOS should be in bios.bin\n");
-        return 1;
+        cart_load_game_rom(argv[1]);
     }
-    cart_load_game_rom(argv[1]);
 
     audio_out = fopen("testaud.raw", "wb");
 
