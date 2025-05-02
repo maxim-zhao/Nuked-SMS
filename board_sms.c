@@ -12,7 +12,7 @@
 
 unsigned char ram[8192];
 
-unsigned char bios[8192];
+unsigned char bios[32768]; // Support BIOS up to 32KB
 
 unsigned char vram[16384];
 int vram_address;
@@ -305,6 +305,12 @@ int main(int argc, char *argv[])
     //load_bios_rom("rom_md.sms");
 
     //cart_load_game_rom("sonic.sms");
+    if (argc < 2)
+    {
+        printf("Pass ROM filename. BIOS should be in bios.bin\n");
+        return 1;
+    }
+    cart_load_game_rom(argv[1]);
 
     audio_out = fopen("testaud.raw", "wb");
 
@@ -346,7 +352,7 @@ int main(int argc, char *argv[])
             }
         }
 
-        //Video_Blit();
+        Video_Blit();
 
         //if (reset)
         //    printf("cycle: %llu rst: %i zclk: %i addr: %x data %x bm %x\n", mcycles, reset, vdp.o_zclk, address, data, bm);
