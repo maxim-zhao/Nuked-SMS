@@ -12,7 +12,8 @@
 
 unsigned char ram[8192];
 
-unsigned char bios[32768]; // Support BIOS up to 32KB
+#define ROM_BIOS_SIZE 32768
+unsigned char bios[ROM_BIOS_SIZE]; // Support BIOS up to 32KB
 
 unsigned char vram[16384];
 int vram_address;
@@ -47,7 +48,6 @@ int snd_buf_cnt = 0;
 FILE *audio_out;
 
 
-#define ROM_BIOS_SIZE 8192
 
 int load_bios_rom(char *filename)
 {
